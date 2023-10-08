@@ -86,38 +86,6 @@ function in R. For example, if `X` is a square invertible matrix, then
 For this assignment, assume that the matrix supplied is always
 invertible.
 
-makeCacheMatrix <- function(x = matrix()) {
-  i <- NULL
-  set <- function(y) {
-    x <<- y
-    i <<- NULL
-  }
-  get <- function() {
-    x
-  }
-  setinverse <- function(inverse) {
-    i <<- inverse
-  }
-  getinverse <- function() {
-    i
-  }
-  list(set = set, get = get,
-       setinverse = setinverse,
-       getinverse = getinverse)
-}
-
-cacheSolve <- function(x, ...) {
-    m <- x$getinverse()  
-    if (!is.null(m)) {
-        message("getting cached data")
-        return(m)
-    }
-    data <- x$get()
-    m <- solve(data) %*% data
-    x$setinverse(m)  
-    m
-}
-
 In order to complete this assignment, you must do the following:
 
 1.  Fork the GitHub repository containing the stub R files at
@@ -135,3 +103,35 @@ In order to complete this assignment, you must do the following:
 ### Grading
 
 This assignment will be graded via peer assessment.
+
+    makeCacheMatrix <- function(x = matrix()) {
+      i <- NULL
+      set <- function(y) {
+        x <<- y
+        i <<- NULL
+      }
+      get <- function() {
+        x
+      }
+      setinverse <- function(inverse) {
+        i <<- inverse
+      }
+      getinverse <- function() {
+        i
+      }
+      list(set = set, get = get,
+           setinverse = setinverse,
+           getinverse = getinverse)
+    }
+
+    cacheSolve <- function(x, ...) {
+        m <- x$getinverse()  
+        if (!is.null(m)) {
+            message("getting cached data")
+            return(m)
+        }
+        data <- x$get()
+        m <- solve(data) %*% data
+        x$setinverse(m)  
+        m
+    }
