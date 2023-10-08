@@ -104,14 +104,14 @@ In order to complete this assignment, you must do the following:
 
 This assignment will be graded via peer assessment.
 
-    makeCacheMatrix <- function(x = matrix()) {
+    makeCacheMatrix <- function(x = matrix()) { 
       i <- NULL
       set <- function(y) {
         x <<- y
-        i <<- NULL
-      }
-      get <- function() {
-        x
+        i <<- NULL  ## reset inv to NULL if there is a new matrix
+    }      }
+      get <- function() {   ## returns value of the matrix argument
+      x
       }
       setinverse <- function(inverse) {
         i <<- inverse
@@ -124,7 +124,7 @@ This assignment will be graded via peer assessment.
            getinverse = getinverse)
     }
 
-    cacheSolve <- function(x, ...) {
+    cacheSolve <- function(x, ...) {  ## Return the inverse matrix of x
         m <- x$getinverse()  
         if (!is.null(m)) {
             message("getting cached data")
